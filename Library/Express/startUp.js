@@ -26,6 +26,12 @@ let startUp = () => {
             ) 
         )
     }
+    
+    const appSendResponse = function( request, response, staticTemplatePath ){
+        response.sendFile( 
+            utility.fixPath( __dirname, '../../Applications/', staticTemplatePath ) 
+        )
+    }
 
     // Default paths
     const paths = {
@@ -42,7 +48,8 @@ let startUp = () => {
     return {
         server: server,
         app   : app,
-        port  : port
+        port  : port,
+        sendResponse: appSendResponse
     }
 
 }
