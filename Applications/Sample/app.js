@@ -1,5 +1,6 @@
-let alma = require( '../../alma' )
-
-alma.appName = 'Sample'
-alma.addRoute( '/', 'public/index.html' )
-alma.addStaticRoute( 'public/resources' )
+module.exports = function( alma ){
+    
+    console.log( alma.getAppName() )
+    alma.addRoute( '/', 'public/index.html' )
+    
+}
