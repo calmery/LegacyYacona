@@ -1,7 +1,6 @@
 /* Test */
 
-let electron = require( './Library/Electron' )
+let alma = require( './almaPrototype' )
 
-let alma = require( './alma' )
-
-setTimeout( () => alma.appLoader( 'Sample' ), 1000 )
+setTimeout( () => alma.AppLoader( 'Sample' ), 1000 )
+setTimeout( () => alma.AppLoader( 'HelloWorld' ), 1000 )
