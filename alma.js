@@ -33,6 +33,10 @@ class Alma {
         } )
     }
     
+    getServer(){
+        return server.server
+    }
+
     responder( request, response, path ){
         server.sendResponse( request, response, path )
     }
