@@ -1,7 +1,7 @@
 const os = require( 'os' )
 
 // http://qiita.com/_shimizu/items/b38d1459abf8436f7f1f
-getLocalAddress = () => {
+const getLocalAddress = () => {
     let ifacesObj = {}
     ifacesObj.ipv4 = []
     ifacesObj.ipv6 = []
