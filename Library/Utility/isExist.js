@@ -1,7 +1,7 @@
 const path = require( 'path' ),
       fs   = require( 'fs' )
 
-isExist = ( file ) =>{
+const isExist = ( file ) =>{
     try {
         fs.statSync( path.resolve( file ) )
         return true
