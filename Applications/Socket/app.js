@@ -1,12 +1,9 @@
 const Alma = require( '../../alma' )
 
-let io
-
 const main = ( alma ) => {
     console.log( 'Welcome !' )
     
-    io = require( 'socket.io' )( alma.getServer() )
-    io.sockets.on( 'connection', function( socket ){
+    alma.getIO().on( 'connection', function( socket ){
         
         socket.on( 'appLoader', function( appName ){
             Alma.AppLoader( appName )
