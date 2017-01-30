@@ -8,6 +8,9 @@ const utility = libraryLoader( 'Utility' )
 
 const server = express.startUp()
 
+const io = require( 'socket.io' )( server.server )
+const url = __dirname
+
 class Alma {
     
     constructor( appName ){
@@ -33,6 +36,10 @@ class Alma {
         } )
     }
     
+    getIO(){
+        return io.sockets
+    }
+    
     getServer(){
         return server.server
     }
@@ -47,6 +54,11 @@ class Alma {
     
     static CreateWindow( appName ){
         electron.createWindow( 'http://localhost:3000/' + appName + '/' )
+    }
+    
+    static AppLoaderForRoot( appName ){
+        require( url + '/Applications/' + appName + '/app' )( new Alma( appName ) )
+        this.CreateWindow( appName )
     }
     
     static AppLoader( appName ){
