@@ -24,6 +24,8 @@ const createWindow = ( url, option ) => {
     let main = new BrowserWindow( option )
     
     main.loadURL( url )
+    
+    main.openDevTools()
 
     /***** Application events *****/
     
