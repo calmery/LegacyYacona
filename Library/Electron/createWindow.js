@@ -13,7 +13,7 @@ app.on( 'window-all-closed', function(){
     app.quit()
 } )
 
-const createWindow = ( option ) => {
+const createWindow = ( url, option ) => {
     
     if( status === false ) return false
 
@@ -23,7 +23,7 @@ const createWindow = ( option ) => {
     
     let main = new BrowserWindow( option )
     
-    main.loadURL( 'http://www.google.com' )
+    main.loadURL( url )
 
     /***** Application events *****/
     

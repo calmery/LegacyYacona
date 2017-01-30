@@ -11,7 +11,7 @@ let startUp = () => {
         server = http.Server( app )
 
     // Application is using random port. So get a port number.
-    const port = server.listen().address().port
+    const port = server.listen( 3000 ).address().port
     console.log( 'Running app on localhost:' + port )
 
     /***** Routing *****/
