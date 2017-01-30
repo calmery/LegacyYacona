@@ -1,43 +1,54 @@
-let alma = {
-
-    LibraryLoader: ( name ) => {
-        return require( './Library/' + name )
-    }
-
+const libraryLoader = ( name ) => {
+    return require( './Library/' + name )
 }
 
-const express = alma.LibraryLoader( 'Express' )
-const electron = alma.LibraryLoader( 'Electron' )
-const utility = alma.LibraryLoader( 'Utility' )
+const express = libraryLoader( 'Express' )
+const electron = libraryLoader( 'Electron' )
+const utility = libraryLoader( 'Utility' )
 
-/* *** Functions *** */
+const server = express.startUp()
 
-const startUp = express.startUp()
-
-alma.app = ( appName ) => {
-    electron.createWindow( 'http://localhost:3000/' + appName + '/' )
-}
-
-alma.addRoute = ( path, filePath ) => {
-    express.addRoute( startUp, '/' + alma.appName + '/' + path, ( request, response ) => {
-        alma.responder( request, response, filePath )
-    } )
-}
-
-alma.addStaticRoute = ( path, fn ) => {
+class Alma {
     
+    constructor( appName ){
+        this.appName = appName
+    }
+    
+    getAppName(){
+        return this.appName
+    }
+    
+    addRoute( path, filePath ){
+        express.addRoute( server, '/' + this.getAppName() + '/' + path, ( request, response ) => {
+            this.responder( request, response, this.getAppName() + '/' + filePath )
+        } )
+    }
+    
+    addStaticRoute( path ){
+        express.addRoute( server, '/' + this.getAppName() + '/*', ( request, response ) => {
+            let url = request.url.split( '/' )
+            url.shift()
+            url.shift()
+            server.appStaticResponse( request, response, utility.fixPath( 'Applications', this.getAppName(), path, url.join( '/' ) ) )
+        } )
+    }
+    
+    responder( request, response, path ){
+        server.sendResponse( request, response, path )
+    }
+    
+    static LibraryLoader( name ){
+        return libraryLoader( name )
+    }
+    
+    static CreateWindow( appName ){
+        electron.createWindow( 'http://localhost:3000/' + appName + '/' )
+    }
+    
+    static AppLoader( appName ){
+        require( './Applications/' + appName + '/app' )( new Alma( appName ) )
+        this.CreateWindow( appName )
+    }
 }
 
-// SendResponse Wrapper
-alma.responder = ( request, response, path ) => {
-    startUp.sendResponse( request, response, alma.appName + '/' + path )
-}
-
-/* *** Applciation Loader *** */
-
-alma.appLoader = ( appName ) => {
-    require( './Applications/' + appName + '/app' )
-    alma.app( appName )
-}
-
-module.exports = alma
+module.exports = Alma

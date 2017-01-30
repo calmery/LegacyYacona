@@ -1,5 +1,5 @@
-module.exports = ( alma ) => {
-    
-    console.log( alma.getAppName() + ' : Hello !!!' )
-    
+module.exports = main
+
+function main( alma ){
+    console.log( alma )
 }
