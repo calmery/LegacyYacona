@@ -12,4 +12,8 @@
         socket.emit( 'appLoader', appName )
     }
     
+    socket.on( 'appLoaded', function(){
+        console.log('ok')
+    } )
+    
 </script>
