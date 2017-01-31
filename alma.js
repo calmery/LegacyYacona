@@ -1,5 +1,5 @@
 const libraryLoader = ( name ) => {
-    return require( './Library/' + name )
+    return require( './Modules/' + name )
 }
 
 const express = libraryLoader( 'Express' )
