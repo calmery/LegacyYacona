@@ -5,8 +5,15 @@ const main = ( alma ) => {
     
     alma.getIO().on( 'connection', function( socket ){
         
+        /*
         socket.on( 'appLoader', function( appName ){
             Alma.AppLoaderForRoot( appName )
+        } )
+        */
+        
+        alma.setSocket( 'appLoader', function( socket, value ){
+            Alma.AppLoaderForRoot( value )
+            socket.emit( 'appLoaded', 'OK' )
         } )
         
     } )

@@ -1153,6 +1153,10 @@ socket.io-parser@2.3.1:
     isarray "0.0.1"
     json3 "3.3.2"
 
+socketio-wildcard:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/socketio-wildcard/-/socketio-wildcard-0.3.0.tgz#8155add41e111d0f27c659d48efa0e81f13daa80"
+
 spdx-correct@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-1.0.2.tgz#4b3073d933ff51f3912f03ac5519498a4150db40"

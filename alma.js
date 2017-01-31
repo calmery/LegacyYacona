@@ -11,6 +11,22 @@ const server = express.startUp()
 const io = require( 'socket.io' )( server.server )
 const url = __dirname
 
+// Using *
+io.use( require( 'socketio-wildcard' )() )
+
+io.sockets.on( 'connection', ( socket ) =>{
+    socket.on( '*', ( value ) => {
+        socketEvent( socket, value )
+    } )
+} )
+
+let fn = {}
+
+function socketEvent( socket, value ){
+    let appName = socket.handshake.headers.referer.replace( /http:\/\//, '' ).replace( RegExp( socket.handshake.headers.host ), '' ).split( '/' )[1]
+    if( fn[appName + '.' + value.data[0]] ) fn[appName + '.' + value.data[0]]( socket, value.data[1] )
+}
+
 class Alma {
     
     constructor( appName ){
@@ -42,6 +58,11 @@ class Alma {
     
     getServer(){
         return server.server
+    }
+    
+    setSocket( name, event ){
+        let appName = this.getAppName()
+        fn[appName + '.' + name] = event
     }
 
     responder( request, response, path ){

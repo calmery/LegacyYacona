@@ -5,9 +5,6 @@ const main = ( alma ) => {
     
     alma.getIO().on( 'connection', function( socket ){
         
-        socket.on( 'appLoader', function( appName ){
-            Alma.AppLoader( appName )
-        } )
         
     } )
     
