@@ -19,7 +19,7 @@ app.on( 'window-all-closed', function(){
 
 let windowQueue = []
 
-const createWindow = ( url, option ) => {
+const createWindow = ( url, option, init ) => {
     
     if( status === false ){
         windowQueue.push( { url: url, option: option } )
@@ -40,6 +40,7 @@ const createWindow = ( url, option ) => {
     
     main.on( 'closed', function(){
         main = null
+        if( init ) init()
     } )
     
     // Ready
