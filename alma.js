@@ -27,6 +27,8 @@ function socketEvent( socket, value ){
     if( fn[appName + '.' + value.data[0]] ) fn[appName + '.' + value.data[0]]( socket, value.data[1] )
 }
 
+let alreadyRuned = []
+
 class Alma {
     
     constructor( appName ){
@@ -74,17 +76,27 @@ class Alma {
     }
     
     static CreateWindow( appName ){
-        electron.createWindow( 'http://localhost:3000/' + appName + '/' )
+        electron.createWindow( 'http://localhost:3000/' + appName + '/', {}, () => {
+            alreadyRuned.splice( alreadyRuned.indexOf( appName ), 1 )
+        } )
     }
     
     static AppLoaderForRoot( appName ){
-        require( url + '/Applications/' + appName + '/app' )( new Alma( appName ) )
-        this.CreateWindow( appName )
+        console.log( 'AppLoaderForRoot : ' + appName )
+        if( alreadyRuned.indexOf( appName ) === -1 ){
+            require( url + '/Applications/' + appName + '/app' )( new Alma( appName ) )
+            this.CreateWindow( appName )
+            alreadyRuned.push( appName )
+        }
     }
     
     static AppLoader( appName ){
-        require( './Applications/' + appName + '/app' )( new Alma( appName ) )
-        this.CreateWindow( appName )
+        console.log( 'AppLoader : ' + appName )
+        if( alreadyRuned.indexOf( appName ) === -1 ){
+            require( './Applications/' + appName + '/app' )( new Alma( appName ) )
+            this.CreateWindow( appName )
+            alreadyRuned.push( appName )
+        }
     }
 }
 
