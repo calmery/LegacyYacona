@@ -1,5 +1,5 @@
 /* Test */
 
-let alma = require( './alma' )
+let yacona = require( './Yacona' )
 
-alma.AppLoader( 'Root' )
+yacona.AppLoader( 'Root' )

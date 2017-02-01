@@ -1,7 +1,7 @@
-module.exports = function( alma ){
+module.exports = function( yacona ){
     
-    console.log( alma.getAppName() )
-    alma.addRoute( '/', 'public/index.html' )
-    alma.addStaticRoute( 'public/resources' )
+    console.log( yacona.getAppName() )
+    yacona.addRoute( '/', 'public/index.html' )
+    yacona.addStaticRoute( 'public/resources' )
     
 }
