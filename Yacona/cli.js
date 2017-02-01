@@ -29,7 +29,7 @@ function socketEvent( socket, value ){
 
 let alreadyRuned = []
 
-class Alma {
+class Yacona {
     
     constructor( appName ){
         this.appName = appName
@@ -84,7 +84,7 @@ class Alma {
     static AppLoaderForRoot( appName ){
         console.log( 'AppLoaderForRoot : ' + appName )
         if( alreadyRuned.indexOf( appName ) === -1 ){
-            require( url + '/Applications/' + appName + '/app' )( new Alma( appName ) )
+            require( url + '/Applications/' + appName + '/app' )( new Yacona( appName ) )
             this.CreateWindow( appName )
             alreadyRuned.push( appName )
         }
@@ -93,11 +93,11 @@ class Alma {
     static AppLoader( appName ){
         console.log( 'AppLoader : ' + appName )
         if( alreadyRuned.indexOf( appName ) === -1 ){
-            require( '../Applications/' + appName + '/app' )( new Alma( appName ) )
+            require( '../Applications/' + appName + '/app' )( new Yacona( appName ) )
             this.CreateWindow( appName )
             alreadyRuned.push( appName )
         }
     }
 }
 
-module.exports = Alma
+module.exports = Yacona

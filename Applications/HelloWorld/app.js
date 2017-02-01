@@ -1,5 +1,5 @@
 module.exports = main
 
-function main( alma ){
+function main( yacona ){
     console.log( 'Hello World !' )
 }

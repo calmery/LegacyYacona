@@ -1,25 +1,25 @@
-const Alma = require( '../../alma' )
+const Yacona = require( '../../Yacona' )
 
-const main = ( alma ) => {
+const main = ( yacona ) => {
     console.log( 'Welcome !' )
     
-    alma.getIO().on( 'connection', function( socket ){
+    yacona.getIO().on( 'connection', function( socket ){
         
         /*
         socket.on( 'appLoader', function( appName ){
-            Alma.AppLoaderForRoot( appName )
+            Yacona.AppLoaderForRoot( appName )
         } )
         */
         
-        alma.setSocket( 'appLoader', function( socket, value ){
-            Alma.AppLoaderForRoot( value )
+        yacona.setSocket( 'appLoader', function( socket, value ){
+            Yacona.AppLoaderForRoot( value )
             socket.emit( 'appLoaded', 'OK' )
         } )
         
     } )
     
-    alma.addRoute( '/', 'public/index.html' )
-    alma.addStaticRoute( 'public/static' )
+    yacona.addRoute( '/', 'public/index.html' )
+    yacona.addStaticRoute( 'public/static' )
 }
 
 module.exports = main
