@@ -1,0 +1,7 @@
+{
+  "name": "alma",
+  "version": "0.0.1",
+  "main": "cli.js",
+  "author": "Marei Kikukawa <contact@calmery.me>",
+  "license": "GPL-2.0"
+}
