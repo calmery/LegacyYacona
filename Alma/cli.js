@@ -1,5 +1,5 @@
 const libraryLoader = ( name ) => {
-    return require( './Modules/' + name )
+    return require( '../Modules/' + name )
 }
 
 const express = libraryLoader( 'Express' )
@@ -9,7 +9,7 @@ const utility = libraryLoader( 'Utility' )
 const server = express.startUp()
 
 const io = require( 'socket.io' )( server.server )
-const url = __dirname
+const url = __dirname + '/../'
 
 // Using *
 io.use( require( 'socketio-wildcard' )() )
@@ -93,7 +93,7 @@ class Alma {
     static AppLoader( appName ){
         console.log( 'AppLoader : ' + appName )
         if( alreadyRuned.indexOf( appName ) === -1 ){
-            require( './Applications/' + appName + '/app' )( new Alma( appName ) )
+            require( '../Applications/' + appName + '/app' )( new Alma( appName ) )
             this.CreateWindow( appName )
             alreadyRuned.push( appName )
         }
