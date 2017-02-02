@@ -6,6 +6,8 @@ const express = libraryLoader( 'Express' )
 const electron = libraryLoader( 'Electron' )
 const utility = libraryLoader( 'Utility' )
 
+const appInstaller = require( './appInstaller' )
+
 const server = express.startUp()
 
 const io = require( 'socket.io' )( server.server )
@@ -73,6 +75,10 @@ class Yacona {
     
     static LibraryLoader( name ){
         return libraryLoader( name )
+    }
+    
+    static appInstaller( path, callback ){
+        appInstaller( path, callback )
     }
     
     static CreateWindow( appName ){
