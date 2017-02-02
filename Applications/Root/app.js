@@ -16,6 +16,13 @@ const main = ( yacona ) => {
             socket.emit( 'appLoaded', 'OK' )
         } )
         
+        yacona.setSocket( 'appInstaller', function( socket, value ){
+            console.log( value )
+            Yacona.appInstaller( value, function( flag ){
+                socket.emit( 'appInstallerCallback', flag )
+            } )
+        } )
+        
     } )
     
     yacona.addRoute( '/', 'public/index.html' )
