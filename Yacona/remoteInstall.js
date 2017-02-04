@@ -1,3 +1,4 @@
+const http = require( 'http' )
 const fs = require( 'fs' )
 
 const utility = require( '../Modules/Utility' )
@@ -60,4 +61,25 @@ const tap = ( repo ) => {
     
 }
 
-tap( 'yacona/core' )
+const remoteInstall = ( appName ) => {
+    
+    let index = JSON.parse( fs.readFileSync( repository + '/../repository.json', 'utf-8' ) )
+    
+    for( let repo in index ){
+        if( index[repo].indexOf( appName ) !== -1 ){
+            let installer = JSON.parse( fs.readFileSync( repository + '/../Repository/' + repo + '/Index/' + appName, 'utf-8' ) )
+            let file = fs.createWriteStream( repository + '/../Tmp/app.zip' )
+            let request = http.get( installer.url, ( response ) => {
+                response.pipe( file ) 
+                require( './appInstaller' )( repository + '/../Tmp/app.zip', ( flag ) => {
+                    if( flag ) console.log( 'install successfully' )
+                    else console.log( 'faild ! Please contact to admin' )
+                    fs.unlinkSync( repository + '/../Tmp/app.zip' )
+                } )
+            } )
+        }
+    }
+    
+}
+
+remoteInstall( 'HelloWorld' )
