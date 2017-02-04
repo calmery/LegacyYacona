@@ -61,12 +61,23 @@ const tap = ( repo ) => {
     
 }
 
-const remoteInstall = ( appName ) => {
+const remoteInstall = ( appName, callback ) => {
+    
+    if( utility.isExist( repository + '/../install.lck' ) === true ){
+        callback( false )
+        return false
+    }
     
     let index = JSON.parse( fs.readFileSync( repository + '/../repository.json', 'utf-8' ) )
     
     for( let repo in index ){
         if( index[repo].indexOf( appName ) !== -1 ){
+            
+            // Install process start
+            
+            // Lock
+            fs.closeSync( fs.openSync( repository + '/../install.lck', 'w' ) )
+            
             let installer = JSON.parse( fs.readFileSync( repository + '/../Repository/' + repo + '/Index/' + appName, 'utf-8' ) )
             let file = fs.createWriteStream( repository + '/../Tmp/app.zip' )
             let request = http.get( installer.url, ( response ) => {
@@ -75,6 +86,8 @@ const remoteInstall = ( appName ) => {
                     if( flag ) console.log( 'install successfully' )
                     else console.log( 'faild ! Please contact to admin' )
                     fs.unlinkSync( repository + '/../Tmp/app.zip' )
+                    callback( true )
+                    fs.unlinkSync( repository + '/../install.lck' )
                 } )
             } )
         }
@@ -82,4 +95,9 @@ const remoteInstall = ( appName ) => {
     
 }
 
-remoteInstall( 'HelloWorld' )
+remoteInstall( 'HelloWorld', ( flag ) => {
+    console.log( flag )
+} )
+remoteInstall( 'HelloWorld', ( flag ) => {
+    console.log( flag )
+} )
