@@ -64,7 +64,7 @@ const tap = ( repo ) => {
 const remoteInstall = ( appName, callback ) => {
     
     if( utility.isExist( repository + '/../install.lck' ) === true ){
-        callback( false )
+        callback( { flag: false, statusText: 'install.lck' } )
         return false
     }
     
@@ -83,10 +83,9 @@ const remoteInstall = ( appName, callback ) => {
             let request = http.get( installer.url, ( response ) => {
                 response.pipe( file ) 
                 require( './appInstaller' )( repository + '/../Tmp/app.zip', ( flag ) => {
-                    if( flag ) console.log( 'install successfully' )
-                    else console.log( 'faild ! Please contact to admin' )
+                    if( flag ) callback( { flag: true, statusText: 'install successfully' } )
+                    else callback( { flag: false, statusText: 'This app has already been installed' } )
                     fs.unlinkSync( repository + '/../Tmp/app.zip' )
-                    callback( true )
                     fs.unlinkSync( repository + '/../install.lck' )
                 } )
             } )
