@@ -13,6 +13,8 @@ const server = express.startUp()
 const io = require( 'socket.io' )( server.server )
 const url = __dirname + '/../'
 
+const remoteInstall = require( './remoteInstall' )
+
 // Using *
 io.use( require( 'socketio-wildcard' )() )
 
