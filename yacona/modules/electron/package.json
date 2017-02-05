@@ -1,0 +1,7 @@
+{
+  "name": "electron-controller",
+  "version": "0.0.1",
+  "main": "index",
+  "author": "Marei Kikukawa",
+  "license": "MIT"
+}

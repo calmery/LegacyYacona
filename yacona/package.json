@@ -1,0 +1,18 @@
+{
+  "name": "yacona",
+  "version": "0.0.1",
+  "description": "Yet another controller/conductor of Node.js application",
+  "main": "lib/index",
+  "repository": {
+    "url": "https://github.com/Yacona/yacona.git",
+    "type": "git"
+  },
+  "author": "Marei Kikukawa",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.1",
+    "simple-git": "^1.65.0",
+    "socket.io": "^1.7.2",
+    "socketio-wildcard": "^0.3.0"
+  }
+}
