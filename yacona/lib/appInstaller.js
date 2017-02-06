@@ -1,8 +1,8 @@
-const fs = require( 'fs' )
+const fs    = require( 'fs' ),
+      unzip = require( 'unzip' )
 
 const moduleLoader = require( './moduleLoader' )
-const unzip   = moduleLoader( 'unzip' ),
-      utility = moduleLoader( 'utility' )
+const utility = moduleLoader( 'utility' )
 
 const status = require( './status' )
 
@@ -22,7 +22,7 @@ const appInstaller = ( path, callback ) => {
                     
                     fs.createReadStream( path ).pipe( unzip.Extract( {
                         path: utility.fixPath( __dirname, '..', 'applications' )
-                    }, callback ) )
+                    } ).on( 'close', callback ) )
                     
                 }
                 
