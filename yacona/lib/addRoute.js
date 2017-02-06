@@ -5,6 +5,7 @@ const addRoute = ( server, appName, appPath, directory ) => {
     let absolutePath = utility.fixPath( appPath, directory )
     server.addRoute( '/' + appName + '/*', ( request, response ) => {
         let url = request.url.split( '/' )
+        console.log( url )
 
         url.shift()
         url.shift()
