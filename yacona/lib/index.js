@@ -73,10 +73,12 @@ class Yacona {
     }
     
     static appLoader( appName ){
+        if( server === undefined ) this.startup()
         return appLoader( appName )
     }
     
     static remoteAppLoader( path ){
+        if( server === undefined ) this.startup()
         return remoteAppLoader( path )
     }
     
