@@ -2,12 +2,10 @@ let yacona = require( './yacona' )
 
 // yacona.startup()
 
-/*
 yacona.appInstaller( '/Users/calmery/Desktop/app.zip', ( error ) => {
     if( !error ) console.log( yacona.appLoader( 'sample' ) )
     else console.log( error )
 } )
-*/
 
 /*
 yacona.remoteInstaller( 'HelloWorld', ( error ) => {
