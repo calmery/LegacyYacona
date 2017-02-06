@@ -3,10 +3,7 @@ const electron = require( 'electron' )
 const app           = electron.app,
       BrowserWindow = electron.BrowserWindow
 
-let status = false
-
 app.on( 'ready', () => {
-    status = true
     if( windowQueue.length !== 0 )
         for( let request; request = windowQueue.shift(); ) 
             createWindow( request.url, request.options, request.closeFn )
@@ -21,7 +18,7 @@ let windowQueue = []
 // createWindow( url )
 const createWindow = ( url, options, closeFn ) => {
 
-    if( status === false ){
+    if( app.isReady() === false ){
         windowQueue.push( { url: url, options: options, closeFn: closeFn } )
         return false
     }
