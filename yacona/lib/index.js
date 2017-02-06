@@ -1,5 +1,6 @@
 const moduleLoader    = require( './moduleLoader' ),
       appLoader       = require( './appLoader' ),
+      remoteAppLoader = require( './remoteAppLoader' ),
       addRoute        = require( './addRoute' ),
       createWindow    = require( './createWindow' ),
       appInstaller    = require( './appInstaller' ),
@@ -65,6 +66,10 @@ class Yacona {
     
     static appLoader( appName ){
         return appLoader( appName )
+    }
+    
+    static remoteAppLoader( path ){
+        return remoteAppLoader( path )
     }
     
     static appInstaller( archive, callback ){

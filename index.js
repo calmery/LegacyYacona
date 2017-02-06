@@ -14,6 +14,10 @@ yacona.remoteInstaller( 'HelloWorld', ( error ) => {
 } )
 */
 
+/*
 yacona.appRemover( 'HelloWorld', ( status ) => {
     console.log( status )
 } )
+*/
+
+yacona.remoteAppLoader( '../../Desktop/sample/' )
