@@ -39,8 +39,8 @@ class Yacona {
         return addRoute( server, this.name, this.path, directory )
     }
     
-    static startup(){
-        server = expressController.startup()
+    static startup( port ){
+        server = expressController.startup( port )
         
         io = require( 'socket.io' )( server.server )
         io.use( require( 'socketio-wildcard' )() )
