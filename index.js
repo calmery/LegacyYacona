@@ -1,5 +1,7 @@
 let yacona = require( './yacona' )
 
+// yacona.startup()
+
 /*
 yacona.appInstaller( '/Users/calmery/Desktop/app.zip', ( error ) => {
     if( !error ) console.log( yacona.appLoader( 'sample' ) )
@@ -20,4 +22,4 @@ yacona.appRemover( 'HelloWorld', ( status ) => {
 } )
 */
 
-yacona.remoteAppLoader( '../../Desktop/sample/' )
+// yacona.remoteAppLoader( '../../Desktop/sample/' )
