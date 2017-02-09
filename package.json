@@ -12,6 +12,7 @@
   "dependencies": {
     "ejs": "^2.5.5",
     "express": "^4.14.1",
+    "pug": "^2.0.0-beta11",
     "simple-git": "^1.65.0",
     "socket.io": "^1.7.2",
     "socketio-wildcard": "^0.3.0",
