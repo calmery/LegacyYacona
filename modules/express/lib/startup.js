@@ -10,10 +10,16 @@ const startup = ( port ) => {
     
     let viewEngine = 'html'
     
+    console.log( port )
+    
     if( typeof port !== 'number' ){
         if( port === 'ejs' ){
             app.set( 'view engine', 'ejs' )
             viewEngine = 'ejs'
+        } else if( port === 'pug' ){
+            console.log( 'pug' )
+            app.set( 'view engine', 'pug' )
+            viewEngine = 'pug'
         }
         port = undefined
     }
