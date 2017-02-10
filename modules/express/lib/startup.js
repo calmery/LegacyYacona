@@ -3,28 +3,26 @@ const express = require( 'express' ),
 
 const addRoute = require( './addRoute' )
 
-const startup = ( port ) => {
+const startup = ( options ) => {
 
     let app  = express(),
         server = http.Server( app )
     
     let viewEngine = 'html'
     
-    console.log( port )
+    if( options === undefined ) options = {}
     
-    if( typeof port !== 'number' ){
-        if( port === 'ejs' ){
+    if( options.viewEngine !== undefined ){
+        if( options.viewEngine === 'ejs' ){
             app.set( 'view engine', 'ejs' )
             viewEngine = 'ejs'
-        } else if( port === 'pug' ){
-            console.log( 'pug' )
+        } else if( options.viewEngine === 'pug' ){
             app.set( 'view engine', 'pug' )
             viewEngine = 'pug'
         }
-        port = undefined
     }
     
-    let listen = port === undefined ? server.listen() : server.listen( port )
+    let listen = ( options.port === undefined ) ? server.listen() : server.listen( options.port )
     
     // Export
     return {
