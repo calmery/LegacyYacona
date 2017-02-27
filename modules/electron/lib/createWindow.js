@@ -17,7 +17,7 @@ let windowQueue = []
 // createWindow( url, closeFn )
 // createWindow( url )
 const createWindow = ( url, options, closeFn ) => {
-
+    
     if( app.isReady() === false ){
         windowQueue.push( { url: url, options: options, closeFn: closeFn } )
         return false
@@ -41,7 +41,7 @@ const createWindow = ( url, options, closeFn ) => {
 
     main.on( 'closed', function(){
         main = null
-        if( closeFn ) closeFn()
+        closeFn()
     } )
 
     // Ready
