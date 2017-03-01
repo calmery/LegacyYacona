@@ -6,7 +6,7 @@ const app           = electron.app,
 app.on( 'ready', () => {
     if( windowQueue.length !== 0 )
         for( let request; request = windowQueue.shift(); ) 
-            createWindow( request.url, request.options, request.closeFn )
+            createWindow( request.url, request.options, request.closeFn, request.callback )
 } )
 
 app.on( 'window-all-closed', app.quit )
@@ -16,10 +16,10 @@ let windowQueue = []
 // createWindow( url, options, closeFn )
 // createWindow( url, closeFn )
 // createWindow( url )
-const createWindow = ( url, options, closeFn ) => {
+const createWindow = ( url, options, closeFn, callback ) => {
     
     if( app.isReady() === false ){
-        windowQueue.push( { url: url, options: options, closeFn: closeFn } )
+        windowQueue.push( { url: url, options: options, closeFn: closeFn, callback: callback } )
         return false
     }
 
@@ -46,7 +46,9 @@ const createWindow = ( url, options, closeFn ) => {
 
     // Ready
     main.show()
-
+    
+    if( callback !== undefined ) callback( main )
+    
     return true
 
 }
