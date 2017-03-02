@@ -1,1 +1,5 @@
-console.log( 'Hello World' )
+const yacona = () => {
+    
+    alert( 'Hello' )
+    
+}
