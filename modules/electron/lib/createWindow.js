@@ -53,4 +53,5 @@ const createWindow = ( url, options, closeFn, callback ) => {
 
 }
 
-module.exports = createWindow
+module.exports.new = createWindow
+module.exports.app = app
