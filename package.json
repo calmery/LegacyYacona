@@ -7,7 +7,7 @@
     "url": "https://github.com/Yacona/yacona.git",
     "type": "git"
   },
-  "author": "Marei Kikukawa",
+  "author": "calmery <contact@calmery.me>",
   "license": "MIT",
   "dependencies": {
     "ejs": "^2.5.5",
