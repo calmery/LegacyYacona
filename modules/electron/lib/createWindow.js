@@ -35,7 +35,7 @@ const createWindow = ( url, options, closeFn, callback ) => {
     let main = new BrowserWindow( options )
 
     main.loadURL( url )
-    if( options.setResizable ) main.setResizable( false )
+    if( options.setResizable === false ) main.setResizable( false )
     if( options.setMaxListeners ) main.setMaxListeners( options.setMaxListeners )
     if( options.openDevTools ) main.openDevTools()
 
