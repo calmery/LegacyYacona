@@ -36,6 +36,7 @@ const createWindow = ( url, options, closeFn, callback ) => {
 
     main.loadURL( url )
     if( options.setResizable === false ) main.setResizable( false )
+    if( options.setMaximumSize ) main.setMaximumSize( options.setMaximumSize.width, options.setMaximumSize.height)
     if( options.setMaxListeners ) main.setMaxListeners( options.setMaxListeners )
     if( options.openDevTools ) main.openDevTools()
 
