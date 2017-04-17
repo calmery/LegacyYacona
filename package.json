@@ -1,6 +1,6 @@
 {
   "name": "yacona",
-  "version": "17.4.17",
+  "version": "17.4.18",
   "description": "Yet another controller/conductor of Node.js application",
   "main": "lib/index",
   "repository": {
