@@ -31,14 +31,22 @@ const createWindow = ( url, options, closeFn, callback ) => {
     if( options === undefined ) options = {}
 
     options.show = false
+    
+    let fixWidth = 0
+    if( require( 'os' ).type().toLowerCase().match( /windows/ ) !== null )
+        fixWidth = 15
+    
+    if( options.width )
+        options.width += fixWidth
 
     let main = new BrowserWindow( options )
 
     main.loadURL( url )
     if( options.setResizable === false ) main.setResizable( false )
-    if( options.setMaximumSize ) main.setMaximumSize( options.setMaximumSize.width, options.setMaximumSize.height)
-    if( options.setMinimumSize ) main.setMinimumSize( options.setMinimumSize.width, options.setMinimumSize.height)
+    if( options.setMaximumSize ) main.setMaximumSize( options.setMaximumSize.width + fixWidth, options.setMaximumSize.height )
+    if( options.setMinimumSize ) main.setMinimumSize( options.setMinimumSize.width + fixWidth, options.setMinimumSize.height )
     if( options.setMaxListeners ) main.setMaxListeners( options.setMaxListeners )
+    if( options.setMenu === null ) main.setMenu( null )
     if( options.openDevTools ) main.openDevTools()
 
     /***** Application events *****/
