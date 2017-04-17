@@ -36,8 +36,10 @@ const createWindow = ( url, options, closeFn, callback ) => {
     if( require( 'os' ).type().toLowerCase().match( /windows/ ) !== null )
         fixWidth = 15
     
-    if( options.width )
-        options.width += fixWidth
+    if( options.width === undefined )
+        options.width = 800
+    
+    options.width += fixWidth
 
     let main = new BrowserWindow( options )
 
